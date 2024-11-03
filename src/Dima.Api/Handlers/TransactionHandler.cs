@@ -119,12 +119,12 @@ public class TransactionHandler(AppDbContext context) : ITransactionHandler
         try
         {
             var query = context
-            .Transactions
-            .AsNoTracking()
-            .Where(x => x.CreatedAt >= request.StartDate
-                && x.CreatedAt <= request.EndDate
-                && x.UserId == request.UserId)
-            .OrderBy(x => x.CreatedAt);
+                .Transactions
+                .AsNoTracking()
+                .Where(x => x.CreatedAt >= request.StartDate
+                    && x.CreatedAt <= request.EndDate
+                    && x.UserId == request.UserId)
+                .OrderBy(x => x.CreatedAt);
 
             var transactions = await query
                 .Skip((request.PageNumber - 1) * request.PageSize)

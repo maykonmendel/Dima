@@ -1,34 +1,35 @@
-using Dima.Api.Common.Api;
+﻿using Dima.Api.Common.Api;
 using Dima.Core.Handlers;
 using Dima.Core.Models;
-using Dima.Core.Requests.Categories;
+using Dima.Core.Requests.Transactions;
 using Dima.Core.Responses;
 
-namespace Dima.Api.Common.Endpoints.Categories;
+namespace Dima.Api.Common.Endpoints.Transactions;
 
-public class DeleteCategoryEndpoint : IEndpoint
+public class DeleteTransactionEndpoint : IEndpoint
 {
     public static void Map(IEndpointRouteBuilder app)
         => app.MapDelete("/{id:long}", HandleAsync)
-            .WithName("Categories: Delete")
-            .WithSummary("Exclui uma nova categoria")
-            .WithDescription("Exclui uma categoria")
+            .WithName("Transactions: Delete")
+            .WithSummary("Exclui uma transação")
+            .WithDescription("Exclui uma transação")
             .WithOrder(3)
-            .Produces<Response<Category?>>();
+            .Produces<Response<Transaction?>>();
 
     private static async Task<IResult> HandleAsync(
-        ICategoryHandler handler,
+        ITransactionHandler handler,
         long id)
     {
-        var request = new DeleteCategoryRequest
+        var request = new DeleteTransactionRequest
         {
             Id = id,
             UserId = "test@balta.io"
         };
-        
+
         var result = await handler.DeleteAsync(request);
+
         return result.IsSuccess
-            ? TypedResults.Ok(result) 
+            ? TypedResults.Ok(result)
             : TypedResults.BadRequest(result);
     }
 }

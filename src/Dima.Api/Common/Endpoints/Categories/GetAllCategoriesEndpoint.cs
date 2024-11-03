@@ -13,8 +13,8 @@ public class GetAllCategoriesEndpoint : IEndpoint
     public static void Map(IEndpointRouteBuilder app)
         => app.MapGet("/", HandleAsync)
             .WithName("Categories: Get All")
-            .WithSummary("Recupera todas categoria")
-            .WithDescription("Recupera todas categoria")
+            .WithSummary("Recupera todas as categorias")
+            .WithDescription("Recupera todas as categorias")
             .WithOrder(5)
             .Produces<PagedResponse<List<Category>?>>();
 
