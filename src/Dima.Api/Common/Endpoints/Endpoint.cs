@@ -20,7 +20,7 @@ public static class Endpoint
             .MapEndpoint<GetCategoryByIdEndpoint>()
             .MapEndpoint<GetAllCategoriesEndpoint>();
         
-        endpoints.MapGroup("v1/categories")
+        endpoints.MapGroup("v1/transactions")
             .WithTags("Transactions")
             // .RequireAuthorization()
             .MapEndpoint<CreateTransactionEndpoint>()
